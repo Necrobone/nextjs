@@ -15,7 +15,7 @@ function Meetups(props) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const client = await MongoClient.connect('mongodb+srv://admin:E6qmK7MEjAHdp2qT@cluster0.uidga.mongodb.net/meetups?retryWrites=true&w=majority');
     const db = client.db();
 
@@ -33,8 +33,7 @@ export async function getStaticProps() {
                 image: meetup.image,
                 id: meetup._id.toString(),
             })),
-        },
-        revalidate: 10,
+        }
     };
 }
 
